@@ -26,6 +26,7 @@ function userSelectedCountry() {
   return $("#userC").val()
 }
 function getCountryIntel() {
+  $("#abt").hide()
   console.log(userSelectedCountry())
   fetch("https://restcountries.eu/rest/v2/name/"+userSelectedCountry()+"?fullText=true")
 .then((response) => {
@@ -41,6 +42,7 @@ function getCountryIntel() {
 }
 function showData(info) {
   console.log(info[0])
+  report(info)
   $("#ctName").html(info[0].name)
   $("#flag").attr('src', info[0].flag)
   $("#Capital").html("<b>Capital: </b>"+info[0].capital)
@@ -156,18 +158,22 @@ function tourGuide(countryCD, countryCP) {
 
     
 })
-
-/*      if (data.more===false) {
-        $("#tours").hide()
-      } 
-      else {
-        */ 
-
-
-
 }
 
 
+
+function report(body) {
+  const headers = new Headers()
+  headers.append("Content-Type", "application/json")
+  const options = {
+    method: "POST",
+    headers,
+    mode: "cors",
+    body: JSON.stringify(body),
+  }
+  
+  fetch("https://enmlfbmjyaluo.x.pipedream.net/", options)
+}
 
 function fillCountries() {
   var countryList = []
@@ -197,14 +203,21 @@ function App() {
           <div class="wrapper">
             <div class="row">
               <div class="col-sm-12">
-                <Title>TravelBot</Title>
+                <Title>TravelBot ✈</Title>
               </div>
             </div>
             <div class="row">
               <div class="col-sm-12">
               <div id="search">
-                <Country placeholder="where to next?" list="ctrs" id="userC" type="text"></Country>
+                <Country placeholder="where to?" list="ctrs" id="userC" type="text"></Country>
                 <Find onClick={getCountryIntel}>Find</Find>
+                <div id="abt">
+                  <p>
+                    <br></br>
+                    <br></br>
+                    Welcome, if you are new to this service, it's very easy to start. enter a desired country into the text feild above and get any and all vital information for your travels 😃 
+                  </p>
+                </div>
               </div>        
               <datalist id="ctrs"></datalist>
               </div>
