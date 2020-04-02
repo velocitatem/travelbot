@@ -6,9 +6,8 @@ const Find = styled.button``
 const Tours = styled.div``
 const Walks = styled.div``
 const Footer = styled.p`
-position: fixed; 
+position: relative;
 bottom: 0; 
-width:100%;
 background-color:white;
 `
 const About = styled.p`
@@ -237,10 +236,7 @@ function App() {
             <div class="container">
               <div class="row">
                 <div class="col-sm-12">
-                  <p>
-                    <b>Page Author:</b> Daniel Rosel <br></br>
-                    <b>API Used:</b> <a href="https://www.triposo.com/api/">tours</a>, <a href="http://restcountries.eu/">countries</a>
-                  </p>
+                  
                 </div>
               </div>
             </div>
@@ -252,7 +248,10 @@ function App() {
 
 export default App;
 /*
-
+<p>
+                    <b>Page Author:</b> Daniel Rosel <br></br>
+                    <b>API Used:</b> <a href="https://www.triposo.com/api/">tours</a>, <a href="http://restcountries.eu/">countries</a>
+                  </p>
 
 
 */
