@@ -65,6 +65,9 @@ $(document).load(
 )
 var token = "&account=8Y2YRTV6&token=30yhgebkre1hisqd696bhfquhxpifv5u"
 function tourGuide(countryCD, countryCP) {
+  $("#aboutCity").show()
+  $("#tours").show()
+  $("#walks").show()
   //https://www.triposo.com/api/20190906/location.json?id=Amsterdam&fields=all
   //https://www.triposo.com/api/20190906/location.json?tag_labels=city&annotate=trigram:Paris&trigram=>=0.3&count=10&fields=id,name,score,country_id,parent_id,snippet&order_by=-trigram
   //https://www.triposo.com/api/20190906/location.json?countrycode=FR&tag_labels=city&count=10&fields=id,name,score,snippet&order_by=-score
@@ -115,6 +118,7 @@ function tourGuide(countryCD, countryCP) {
 })
 .catch(err => {
   console.log(err);
+  $("#walks").hide()
 })
 
     fetch("https://www.triposo.com/api/20190906/tour.json?location_ids="+countryCP+"&count=5&fields=id,name,score,price,price_is_per_person,vendor,intro,tag_labels&order_by=-score"+token)
@@ -123,26 +127,41 @@ function tourGuide(countryCD, countryCP) {
    })
   .then((data) => {
       console.log(data)
-      var script = "<hr><h2>Top 5 Tours in "+countryCP+"</h2>"
-      $("#tours").html(script)
-      var t
-      for (t=0;t<5;t++) {
-        $("#tours").append( "<h5>#"+" "+ data.results[t].name + " </h5>")
-        $("#tours").append( "" + data.results[t].intro +"<br>")
-        $("#tours").append( "<u>Price/person: " + data.results[t].price.amount + data.results[t].price.currency +"</u><br>")
+      if (data.more===false) {
+        $("#tours").hide()
+      } 
+      else {
+        var script = "<hr><h2>Top 5 Tours in "+countryCP+"</h2>"
+        $("#tours").html(script)
+        var t
+        for (t=0;t<5;t++) {
+          $("#tours").append( "<h5>#"+" "+ data.results[t].name + " </h5>")
+          $("#tours").append( "" + data.results[t].intro +"<br>")
+          $("#tours").append( "<u>Price/person: " + data.results[t].price.amount + data.results[t].price.currency +"</u><br>")
+        }
       }
   })
   .catch(err => {
-      console.log(err);
+      console.log(err);      
   })
 
 
 })
 .catch(err => {
     console.log(err);
+    $("#aboutCity").hide()
+    $("#tours").hide()
+    $("#walks").hide()
+
+
+    
 })
 
-//
+/*      if (data.more===false) {
+        $("#tours").hide()
+      } 
+      else {
+        */ 
 
 
 
