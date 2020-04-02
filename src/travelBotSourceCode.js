@@ -5,6 +5,12 @@ const Country = styled.input``
 const Find = styled.button``
 const Tours = styled.div``
 const Walks = styled.div``
+const Footer = styled.p`
+position: fixed; 
+bottom: 0; 
+width:100%;
+background-color:white;
+`
 const About = styled.p`
 padding-top: 0.6cm;
 `
@@ -226,6 +232,20 @@ function App() {
           </div>
         </div>
        </div>
+       <footer>
+         <Footer>
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-12">
+                  <p>
+                    <b>Page Author:</b> Daniel Rosel <br></br>
+                    <b>API Used:</b> <a href="https://www.triposo.com/api/">tours</a>, <a href="http://restcountries.eu/">countries</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+         </Footer>
+       </footer>
     </div>
   );
 }
