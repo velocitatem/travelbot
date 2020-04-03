@@ -45,6 +45,7 @@ function showData(info) {
   report(info)
   $("#ctName").html(info[0].name)
   $("#flag").attr('src', info[0].flag)
+  $("#flag").attr('style', "border: solid;")
   $("#Capital").html("<b>Capital: </b>"+info[0].capital)
   $("#Region").html("<b>Region: </b>"+info[0].region)
   $("#Population").html("<b>Population: </b>"+info[0].population)
@@ -193,6 +194,14 @@ function fillCountries() {
   })
 
 }
+
+function loadCT() {
+  console.log($("#country"))
+}
+$(document).load(function(){
+  
+})
+
 function App() {
   return (
     <div id="WebApp">
@@ -208,9 +217,9 @@ function App() {
             </div>
             <div class="row">
               <div class="col-sm-12">
-              <div id="search">
-                <Country placeholder="where to?" list="ctrs" id="userC" type="text"></Country>
-                <Find onClick={getCountryIntel}>Find</Find>
+              <div id="search">                      
+                  <Country placeholder="where to?" list="ctrs" name="country" id="userC" type="text"></Country>
+                  <Find onClick={getCountryIntel}>Find</Find>
                 <div id="abt">
                   <p>
                     <br></br>
