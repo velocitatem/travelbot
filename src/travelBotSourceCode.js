@@ -28,7 +28,7 @@ function userSelectedCountry() {
 function getCountryIntel() {
   $("#abt").hide()
   console.log(userSelectedCountry())
-  fetch("https://restcountries.eu/rest/v2/name/"+userSelectedCountry()+"?fullText=true")
+  fetch("https://restcountries.eu/rest/v3.1/name/"+userSelectedCountry()+"?fullText=true")
 .then((response) => {
     return response.json();
 })
@@ -178,7 +178,7 @@ function report(body) {
 
 function fillCountries() {
   var countryList = []
-  fetch("https://restcountries.eu/rest/v2/all")
+  fetch("https://restcountries.eu/rest/v3.1/all")
   .then((response) => {
       return response.json();
   })
